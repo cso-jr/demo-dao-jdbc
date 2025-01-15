@@ -1,5 +1,8 @@
 package application;
 
+import java.util.List;
+import java.util.Scanner;
+
 import model.dao.DaoFactory;
 import model.dao.DepartmentDao;
 import model.entities.Department;
@@ -8,40 +11,41 @@ public class Program2 {
 
 	public static void main(String[] args) {
 		
+		Scanner sc = new Scanner(System.in);
 	//	SellerDao sellerDao = DaoFactory.createSellerDao();
 		DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 		
-	/*	System.out.println("=== TEST 1 : Seller find by ID ===");
-		Seller seller = sellerDao.findById(3);
+		System.out.println("=== TEST 1 : Department find by ID ===");
+		Department department = departmentDao.findById(3);
 		
-		System.out.println(seller);
+		System.out.println(department);
 		
-		System.out.println("\n=== TEST 2 : Seller find by Department ===");
-		Department department = new Department(2,null);
-		List<Seller> list = sellerDao.findByDepartment(department);
-		for (Seller obj : list) {
-			System.out.println(obj);
-		}
-		
-		System.out.println("\n=== TEST 3 : Seller find ALL ===");
+		System.out.println("\n=== TEST 2 : Seller find ALL ===");
 	//	Department department = new Department();
-		list = sellerDao.findAll();
-		for (Seller obj : list) {
+		List <Department> list = departmentDao.findAll();
+		for (Department obj : list) {
 			System.out.println(obj);
 			
-		}*/
-		System.out.println("\n=== TEST 4 : Department insert ===");
-		Department newDepartment = new Department(null,"Musica");
+		}
+		
+		System.out.println("\n=== TEST 3 : Department insert ===");
+		Department newDepartment = new Department(null,"Music");
 		departmentDao.insert(newDepartment);
-		System.out.println("Inserted! New id = " + );
-/*
-		System.out.println("\n=== TEST 5 : Seller update ===");
-		seller = sellerDao.findById(1);
-		seller.setName("Marta Waine");
-		sellerDao.update(seller);
+		System.out.println("Inserted!");
+
+		System.out.println("\n=== TEST 4 : Department update ===");
+		Department obj = departmentDao.findById(8);
+		obj.setName("Music");
+		departmentDao.update(obj);
 		System.out.println("Update complete!");
-	*/	
-
+		
+		System.out.println("\n=== TEST 5 : Department delete ===");
+		System.out.println("Enter id for delete test:");
+		int id = sc.nextInt();
+		departmentDao.deleteById(id);
+		System.out.println("Delete complete!");
+		
+		sc.close();
 	}
-
+	
 }
